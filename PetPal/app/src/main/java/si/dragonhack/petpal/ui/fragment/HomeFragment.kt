@@ -3,6 +3,7 @@ package si.dragonhack.petpal.ui.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.chip.Chip
 import com.yarolegovich.discretescrollview.DiscreteScrollView
 import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
@@ -20,6 +22,7 @@ import si.dragonhack.petpal.data.models.Pet
 import si.dragonhack.petpal.data.viewmodel.HomeViewModel
 import si.dragonhack.petpal.data.viewmodel.YourPetViewmodel
 import si.dragonhack.petpal.ui.activity.AddPetActivity
+import si.dragonhack.petpal.ui.adapter.CircularPagerIndicatorDecoration
 import si.dragonhack.petpal.ui.adapter.OnItemChangedListener
 import si.dragonhack.petpal.ui.adapter.YourPetDataAdapter
 import si.dragonhack.petpal.ui.adapter.YourPetDataViewHolder
@@ -54,11 +57,24 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
             val intent = Intent(this.context, AddPetActivity::class.java)
             startActivity(intent)
         }
+        showTraits(arrayListOf<String>("smart", "loyal", "brave", "kind", "friendly", "brave", "kind", "friendly"))
     }
 
     private fun updateYourPetInfo(pet: Pet?) {
         pet_height.text = pet?.height.toString()
         pet_weight.text = pet?.weight.toString()
+    }
+    fun showTraits(traits: List<String>){
+        for(trait in traits){
+            val mchip = this.layoutInflater.inflate(R.layout.pet_trait_chip, null, false) as Chip
+            mchip.text = trait
+            val paddingDp = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 10f,
+                resources.displayMetrics
+            )
+            mchip.setPadding(paddingDp.toInt(), 0, paddingDp.toInt(), 0)
+            chipsPrograms.addView(mchip)
+        }
     }
 
     fun setupYourPetsList(petsList: List<Pet>){
@@ -70,6 +86,7 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
         yourPetsRecyclerView.setSlideOnFling(false)
         yourPetsRecyclerView.setOffscreenItems(2);
         yourPetsRecyclerView.addOnItemChangedListener(this);
+        yourPetsRecyclerView.addItemDecoration(CircularPagerIndicatorDecoration());
     }
     private fun setDiscreteViewItemTransformation(yourPetsRecyclerView: DiscreteScrollView) {
         yourPetsRecyclerView.setItemTransformer(

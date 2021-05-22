@@ -31,9 +31,9 @@ class YourPetViewmodel: ViewModel() {
     private fun loadYourPets(){
         //this.nearbyRestaurants = firebaseDatabase.returnNearbyRestaurants()
         val pets = MutableLiveData<List<Pet>>()
-        val pet1 = Pet(" ", "Miki", "Beagle", 25.5, 35.5, 2, "M")
-        val pet2 = Pet(" ", "Fifika", "Shih-tzu", 6.5, 25.5, 5, "F")
-        val pet3 = Pet(" ", "Floki", "Bulldog", 35.5, 45.5, 9, "M")
+        val pet1 = Pet(" ", "Miki", "Beagle", 25.5, 35.5, 2, "Male")
+        val pet2 = Pet(" ", "Fifika", "Shih-tzu", 6.5, 25.5, 5, "Female")
+        val pet3 = Pet(" ", "Floki", "Bulldog", 35.5, 45.5, 9, "Male")
         pets.value = arrayListOf(pet1, pet2, pet3)
         this.yourPets = pets
         this.selectedPet = MutableLiveData<Pet>(pet1)

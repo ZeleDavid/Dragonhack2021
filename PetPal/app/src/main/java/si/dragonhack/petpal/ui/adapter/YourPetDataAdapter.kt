@@ -28,6 +28,10 @@ class YourPetDataAdapter(list: List<Pet>): RecyclerView.Adapter<YourPetDataViewH
 class YourPetDataViewHolder(val view: View): RecyclerView.ViewHolder(view){
     fun bind(pet: Pet){
         view.pet_name.text = pet.name
+        view.pet_breed.text = pet.breed
+        if(pet.sex == "Female"){
+            view.pet_sex_icon.setImageResource(R.drawable.ic_female)
+        }
     }
 }
 

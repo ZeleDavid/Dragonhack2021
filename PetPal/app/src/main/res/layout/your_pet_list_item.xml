@@ -51,7 +51,7 @@
                     android:layout_marginTop="24dp"
                     android:shadowColor="#393939"
                     android:text="Miki"
-                    android:textColor="#171616"
+                    android:textColor="#FFFFFF"
                     android:textSize="36sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -63,17 +63,18 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
                     android:text="Beagle"
-                    android:textColor="#2E2B2B"
+                    android:textColor="#FFFFFF"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pet_name" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/pet_sex_icon"
                     android:layout_width="0dp"
                     android:layout_height="70px"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="16dp"
+                    android:tint="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="@+id/pet_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/pet_name"
