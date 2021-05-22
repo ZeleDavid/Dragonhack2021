@@ -1,5 +1,6 @@
 package si.dragonhack.petpal.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import si.dragonhack.petpal.R
 import si.dragonhack.petpal.data.models.Pet
 import si.dragonhack.petpal.data.viewmodel.HomeViewModel
 import si.dragonhack.petpal.data.viewmodel.YourPetViewmodel
+import si.dragonhack.petpal.ui.activity.AddPetActivity
 import si.dragonhack.petpal.ui.adapter.OnItemChangedListener
 import si.dragonhack.petpal.ui.adapter.YourPetDataAdapter
 import si.dragonhack.petpal.ui.adapter.YourPetDataViewHolder
@@ -48,6 +50,10 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
         yourPetViewModel.getSelectedPet().observe(viewLifecycleOwner, Observer {
             updateYourPetInfo(it)
         })
+        add_pet_button.setOnClickListener {
+            val intent = Intent(this.context, AddPetActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun updateYourPetInfo(pet: Pet?) {

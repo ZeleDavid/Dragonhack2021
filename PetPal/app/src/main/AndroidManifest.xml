@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".ui.activity.AddPetActivity"
+            android:label="@string/title_activity_add_pet"></activity>
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name">
