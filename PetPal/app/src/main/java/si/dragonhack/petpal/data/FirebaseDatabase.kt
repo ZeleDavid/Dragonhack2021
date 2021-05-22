@@ -35,8 +35,13 @@ object FirebaseDatabase {
 
                     pet.action = ds.child("action").value.toString()
                     pet.name = ds.child("name").value.toString()
+                    for (dsNested in ds.child("symptoms").children) {
+                        pet.symptoms.add(dsNested.value.toString())
+                    }
+                    for (dsNested in ds.child("bodyParts").children) {
+                        pet.bodyParts.add(dsNested.value.toString())
+                    }
 
-                    Log.d("TAG", pet.toString())
 //                    r.name = ds.child("name").value.toString()
 //                    r.picture = ds.child("picture").value.toString()
 //                    r.price = ds.child("price").value.toString().toDouble()
@@ -62,7 +67,7 @@ object FirebaseDatabase {
 //                        r.rate = (r.rateFood+r.rateOffer+r.rateService)/3
 //                    }
 //                    r.rate=round(r.rate*10)/10
-//                    listek.add(r)
+                    listek.add(pet)
                     //Log.d("TAG", restaurantId)
                 }
                 mutableData.value=listek
