@@ -46,9 +46,15 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
             setupYourPetsList(it)
         })
         yourPetViewModel.getSelectedPet().observe(viewLifecycleOwner, Observer {
-            pet_text_test.text = it.name
+            updateYourPetInfo(it)
         })
     }
+
+    private fun updateYourPetInfo(pet: Pet?) {
+        pet_height.text = pet?.height.toString()
+        pet_weight.text = pet?.weight.toString()
+    }
+
     fun setupYourPetsList(petsList: List<Pet>){
         val yourPetDataAdapter =
             YourPetDataAdapter(petsList)
@@ -56,6 +62,7 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
         yourPetsRecyclerView.adapter = yourPetDataAdapter
         setDiscreteViewItemTransformation(yourPetsRecyclerView)
         yourPetsRecyclerView.setSlideOnFling(false)
+        yourPetsRecyclerView.setOffscreenItems(2);
         yourPetsRecyclerView.addOnItemChangedListener(this);
     }
     private fun setDiscreteViewItemTransformation(yourPetsRecyclerView: DiscreteScrollView) {
@@ -63,7 +70,7 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
             ScaleTransformer
                 .Builder()
                 .setMaxScale(1.05f)
-                .setMinScale(0.99f)
+                .setMinScale(0.8f)
                 .setPivotX(Pivot.X.CENTER)
                 .setPivotY(Pivot.Y.BOTTOM)
                 .build()
@@ -71,7 +78,6 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
     }
 
     override fun onCurrentItemChanged(viewHolder: YourPetDataViewHolder?, adapterPosition: Int) {
-        Log.i("PET", adapterPosition.toString())
         yourPetViewModel.setSelectedPet(adapterPosition)
     }
 }
