@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "913079208296",
+    "firebase_url": "https://dragonhack2021-c6288-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "dragonhack2021-c6288",
+    "storage_bucket": "dragonhack2021-c6288.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913079208296:android:03aa126ec4fe1174382edd",
+        "android_client_info": {
+          "package_name": "si.dragonhack.petpal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913079208296-4v2adckpfsgb90dlrrdd6ll45qtfjacv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "si.dragonhack.petpal",
+            "certificate_hash": "5b6238a57e38192800d960e8ad04bd78a5769a1f"
+          }
+        },
+        {
+          "client_id": "913079208296-e4m2pvrf1ienjgj3mj2a69q52v0h95ql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBRDjLGb1wgJy8hCBWeDr_-Rk_AOj2QCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913079208296-e4m2pvrf1ienjgj3mj2a69q52v0h95ql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

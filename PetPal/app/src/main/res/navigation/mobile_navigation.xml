@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
+        android:id="@+id/navigation_chatbot"
+        android:name="si.dragonhack.petpal.ui.fragment.ChatbotFragment"
+        android:label="@string/title_chatbot"
+        tools:layout="@layout/fragment_chatbot" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="si.dragonhack.petpal.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"

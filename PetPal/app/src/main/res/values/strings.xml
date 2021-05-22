@@ -2,6 +2,7 @@
     <string name="app_name">PetPal</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
+    <string name="title_chatbot">Chatbot</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_add_pet">AddPetActivity</string>
     <!--

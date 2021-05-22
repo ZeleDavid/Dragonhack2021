@@ -9,4 +9,7 @@ data class Pet (
     var age: Int = 0,
     var sex: String = ""
 ){
+    override fun toString(): String {
+        return "Pet(image='$image', name='$name', breed='$breed', weight=$weight, height=$height, age=$age, sex='$sex')"
+    }
 }
