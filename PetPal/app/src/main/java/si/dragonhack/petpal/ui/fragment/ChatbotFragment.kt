@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_chatbot.*
 import kotlinx.coroutines.*
 import si.dragonhack.petpal.data.FirebaseDatabase
+import si.dragonhack.petpal.data.models.PetSymptom
 import si.dragonhack.petpal.data.viewmodel.PetSymptomViewModel
 import si.dragonhack.petpal.ui.adapter.MessagingAdapter
 
@@ -36,6 +37,8 @@ class ChatbotFragment : Fragment() {
     private val botList = listOf("David", "Luka", "Primož")
 
     lateinit var petSymptomViewModel: PetSymptomViewModel
+
+    var pets: ArrayList<PetSymptom> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -100,10 +103,15 @@ class ChatbotFragment : Fragment() {
 
         petSymptomViewModel = ViewModelProviders.of(this)[PetSymptomViewModel::class.java]
 
-        petSymptomViewModel.getPets().observe(this, Observer { pets ->
-            pets.toString()
+        petSymptomViewModel.getPets().observe(this, Observer { allPets ->
+            this.pets=ArrayList(allPets)
+            var allSymptoms: ArrayList<String> = ArrayList()
+            for (pet in pets) {
+                allSymptoms.add(pet.symptoms.joinToString(separator = ";"))
+            }
+
+            BotResponse.allSymptoms = allSymptoms
         })
-        Log.d("TAG", "message")
     }
 
     private fun sendMessage() {
