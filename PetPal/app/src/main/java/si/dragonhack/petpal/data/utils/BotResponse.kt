@@ -28,6 +28,7 @@ object BotResponse {
     fun basicResponses(_message: String): String {
         val random = (0..2).random()
         val message = stemmer.stem(_message.toLowerCase())
+        Log.d("TAG",message)
 
         return when {
 
@@ -55,7 +56,7 @@ object BotResponse {
             message.contains("hello") -> {
                 when (random) {
                     0 -> "Hello there!"
-                    1 -> "Sup"
+                    1 -> "Hey!"
                     2 -> "Buongiorno!"
                     else -> "error" }
             }
@@ -95,7 +96,7 @@ object BotResponse {
                 "What symptoms are you noticing on your pet?"
             }
 
-            somethingWrong && message.contains("stop")-> {
+            somethingWrong && message.contains("that's al")-> {
                 somethingWrong = false
                 Log.d("TAG", enteredSymptoms.toString())
                 mostProbableCause(message)
@@ -103,7 +104,7 @@ object BotResponse {
 
             else -> {
                 when (somethingWrong && isSymptom(message)) {
-                    true -> "If those are all the symptoms type 'stop'. Otherwise list another."
+                    true -> "If those are all the symptoms type 'That's all'. Otherwise list another."
                     false -> {
                         //When the programme doesn't understand...
                         when (random) {
