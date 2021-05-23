@@ -10,7 +10,7 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="4dp"
         android:background="@drawable/send_round_box"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="@color/colorPrimary"
         android:padding="14dp"
         android:text="This is a sample message that will appear"
         android:textColor="@android:color/white"

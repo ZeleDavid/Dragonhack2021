@@ -173,7 +173,7 @@ class ChatbotFragment : Fragment() {
                 val timeStamp = Time.timeStamp()
                 adapter.insertMessage(Message(message, RECEIVE_ID, timeStamp))
 
-                rv_messages.scrollToPosition(adapter.itemCount - 1)
+                rv_messages?.scrollToPosition(adapter.itemCount - 1)
             }
         }
     }
