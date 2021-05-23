@@ -19,6 +19,7 @@ import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import si.dragonhack.petpal.R
 import si.dragonhack.petpal.data.models.Pet
+import si.dragonhack.petpal.data.models.PetStateWeightHeight
 import si.dragonhack.petpal.data.viewmodel.HomeViewModel
 import si.dragonhack.petpal.data.viewmodel.YourPetViewmodel
 import si.dragonhack.petpal.ui.activity.AddPetActivity
@@ -26,6 +27,7 @@ import si.dragonhack.petpal.ui.adapter.CircularPagerIndicatorDecoration
 import si.dragonhack.petpal.ui.adapter.OnItemChangedListener
 import si.dragonhack.petpal.ui.adapter.YourPetDataAdapter
 import si.dragonhack.petpal.ui.adapter.YourPetDataViewHolder
+import si.dragonhack.petpal.util.PetStateCalculator
 
 class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPetDataViewHolder> {
 
@@ -53,18 +55,52 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
         yourPetViewModel.getSelectedPet().observe(viewLifecycleOwner, Observer {
             updateYourPetInfo(it)
         })
+        yourPetViewModel.getSelectedBreedData().observe(viewLifecycleOwner, Observer {
+            val temperaments = it.temperament.split(", ")
+            showTraits(temperaments)
+        })
+        yourPetViewModel.getComparison().observe(viewLifecycleOwner, Observer {
+            updateComparison(it)
+        })
         add_pet_button.setOnClickListener {
             val intent = Intent(this.context, AddPetActivity::class.java)
             startActivity(intent)
         }
-        showTraits(arrayListOf<String>("smart", "loyal", "brave", "kind", "friendly", "brave", "kind", "friendly"))
-    }
 
+    }
+    private fun updateComparison(comparison: PetStateWeightHeight){
+        Log.i("comp", comparison.weight.difference.toString())
+        if(comparison.weight.isAverage){
+            weight_difference_text.text = "Average"
+            weight_desc.text = "Your pet is normal"
+            weight_difference_number.text = ""
+            kg.text = ""
+        }
+        else{
+            weight_difference_text.text = comparison.weight.keyText
+            weight_difference_number.text = comparison.weight.difference.toString()
+            weight_desc.text = "Than average by"
+            kg.text = "kg"
+        }
+        if(comparison.height.isAverage){
+            height_difference_text.text = "Average"
+            height_desc.text = "Your pet is normal"
+            height_difference_number.text = ""
+            cm.text = ""
+        }
+        else{
+            height_difference_text.text = comparison.height.keyText
+            height_difference_number.text = comparison.height.difference.toString()
+            height_desc.text = "Than average by"
+            cm.text = "cm"
+        }
+    }
     private fun updateYourPetInfo(pet: Pet?) {
         pet_height.text = pet?.height.toString()
         pet_weight.text = pet?.weight.toString()
     }
     fun showTraits(traits: List<String>){
+        chipsPrograms.removeAllViews()
         for(trait in traits){
             val mchip = this.layoutInflater.inflate(R.layout.pet_trait_chip, null, false) as Chip
             mchip.text = trait

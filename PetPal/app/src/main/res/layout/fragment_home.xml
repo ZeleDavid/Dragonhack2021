@@ -32,6 +32,7 @@
             android:id="@+id/your_pets_list"
             android:layout_width="0dp"
             android:layout_height="600px"
+            android:elevation="0px"
             app:dsv_orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -107,7 +108,7 @@
                     app:layout_constraintTop_toTopOf="@+id/pet_weight" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/weight_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
@@ -117,15 +118,15 @@
                     app:layout_constraintEnd_toStartOf="@+id/weight_difference_number" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/kg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="kg"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintBottom_toBottomOf="@+id/weight_desc"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView4" />
+                    app:layout_constraintTop_toTopOf="@+id/weight_desc" />
 
                 <TextView
                     android:id="@+id/weight_difference_number"
@@ -135,9 +136,9 @@
                     android:text="1.4"
                     android:textColor="#1C1C1C"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
-                    app:layout_constraintEnd_toStartOf="@+id/textView5"
-                    app:layout_constraintTop_toTopOf="@+id/textView4" />
+                    app:layout_constraintBottom_toBottomOf="@+id/weight_desc"
+                    app:layout_constraintEnd_toStartOf="@+id/kg"
+                    app:layout_constraintTop_toTopOf="@+id/weight_desc" />
 
                 <TextView
                     android:id="@+id/weight_difference_text"
@@ -185,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text="kg"
+                    android:text="cm"
                     android:textColor="#151414"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/pet_height"
@@ -193,7 +194,7 @@
                     app:layout_constraintTop_toTopOf="@+id/pet_height" />
 
                 <TextView
-                    android:id="@+id/textView41"
+                    android:id="@+id/height_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
@@ -203,15 +204,15 @@
                     app:layout_constraintEnd_toStartOf="@+id/height_difference_number" />
 
                 <TextView
-                    android:id="@+id/textView51"
+                    android:id="@+id/cm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="cm"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView41"
+                    app:layout_constraintBottom_toBottomOf="@+id/height_desc"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView41" />
+                    app:layout_constraintTop_toTopOf="@+id/height_desc" />
 
                 <TextView
                     android:id="@+id/height_difference_number"
@@ -221,9 +222,9 @@
                     android:text="1.4"
                     android:textColor="#1C1C1C"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView41"
-                    app:layout_constraintEnd_toStartOf="@+id/textView51"
-                    app:layout_constraintTop_toTopOf="@+id/textView41" />
+                    app:layout_constraintBottom_toBottomOf="@+id/height_desc"
+                    app:layout_constraintEnd_toStartOf="@+id/cm"
+                    app:layout_constraintTop_toTopOf="@+id/height_desc" />
 
                 <TextView
                     android:id="@+id/height_difference_text"
