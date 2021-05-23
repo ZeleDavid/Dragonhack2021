@@ -3,6 +3,7 @@ package si.dragonhack.petpal.data.utils
 import android.util.Log
 import androidx.lifecycle.ViewModelProviders
 import si.dragonhack.petpal.data.FirebaseDatabase
+import si.dragonhack.petpal.data.models.PetSymptom
 import si.dragonhack.petpal.data.utils.Constants.OPEN_GOOGLE
 import si.dragonhack.petpal.data.utils.Constants.OPEN_SEARCH
 import si.dragonhack.petpal.data.viewmodel.PetSymptomViewModel
@@ -13,15 +14,20 @@ import java.text.SimpleDateFormat
 object BotResponse {
     lateinit var petSymptomViewModel: PetSymptomViewModel
 
+    var somethingWrong: Boolean = false
     var allSymptomsEntered: Boolean = false
 
     var enteredSymptoms: ArrayList<String> = ArrayList()
 
     var allSymptoms: ArrayList<String> = ArrayList()
 
+    var allPetSymptoms: ArrayList<PetSymptom> = ArrayList()
+
+    val stemmer = Stemmer()
+
     fun basicResponses(_message: String): String {
         val random = (0..2).random()
-        val message =_message.toLowerCase()
+        val message = stemmer.stem(_message.toLowerCase())
 
         return when {
 
@@ -83,11 +89,23 @@ object BotResponse {
                 OPEN_SEARCH
             }
 
-            //When the programme doesn't understand...
+            !somethingWrong && (message.contains("sick") || message.contains("wrong") || message.contains("hurt"))
+            -> {
+                somethingWrong = true
+                "What symptoms are you noticing on your pet?"
+            }
+
+            somethingWrong && message.contains("stop")-> {
+                somethingWrong = false
+                Log.d("TAG", enteredSymptoms.toString())
+                mostProbableCause(message)
+            }
+
             else -> {
-                when (isSymptom(message)) {
-                    true -> "Is symptom"
+                when (somethingWrong && isSymptom(message)) {
+                    true -> "If those are all the symptoms type 'stop'. Otherwise list another."
                     false -> {
+                        //When the programme doesn't understand...
                         when (random) {
                             0 -> "I don't understand..."
                             1 -> "Try asking me something different"
@@ -103,12 +121,51 @@ object BotResponse {
     fun isSymptom(message: String): Boolean{
         for (symptom in allSymptoms) {
             val strs = symptom.split(";").toTypedArray()
-            for(i in strs){
+            for(_i in strs){
+                val i = stemmer.stem(_i.toLowerCase())
                 if(message.contains(i)){
+                    enteredSymptoms.add(i)
                     return true
                 }
             }
         }
         return false
+    }
+
+    fun mostProbableCause(message: String): String{
+        var possiblePetSymptoms = Array<ArrayList<PetSymptom>>(enteredSymptoms.size) { ArrayList<PetSymptom>() }
+
+        var i = 0
+        for (symptom in enteredSymptoms) {
+            possiblePetSymptoms[i].addAll(ArrayList(allPetSymptoms.filter { item ->
+                item.symptoms.any { stemmer.stem(it.toLowerCase()) == symptom }
+            }))
+            i++
+            Log.d("TAG",possiblePetSymptoms.toString())
+        }
+
+        var maxPs = 0
+        var selectedPetSymptom = PetSymptom()
+        for (_symptom in possiblePetSymptoms) {
+            for (symptom in _symptom) {
+                if(symptom.symptoms.size>maxPs){
+                    selectedPetSymptom=symptom
+                    maxPs=symptom.symptoms.size
+                }
+                //val maxObject: PetSymptom = symp.maxBy { it.size }
+            }
+            //val maxObject: PetSymptom = symp.maxBy { it.size }
+        }
+
+        Log.d("TAG",selectedPetSymptom.toString())
+
+        if(selectedPetSymptom != null){
+            //return "There is a high posibility of your pet having "+possiblePetSymptoms[0].name+" , you should "+possiblePetSymptoms[0].action
+            return "There is a high posibility of your pet having "+selectedPetSymptom.name+" , you should "+ selectedPetSymptom.action
+        }
+        else{
+            return "We could not identify the problem with your pet. Perhaps you should consider taking it to the vet as soon as possible."
+        }
+
     }
 }

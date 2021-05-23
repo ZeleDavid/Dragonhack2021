@@ -111,6 +111,7 @@ class ChatbotFragment : Fragment() {
             }
 
             BotResponse.allSymptoms = allSymptoms
+            BotResponse.allPetSymptoms = pets
         })
     }
 
