@@ -1,7 +1,9 @@
 package si.dragonhack.petpal.ui.fragment
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +56,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun showFacts(facts: List<Fact>){
+        progressBar.visibility = View.GONE
         val factsAdapter = DogFactsAdapter(facts)
         var recycler = facts_list
         recycler.layoutManager = LinearLayoutManager(context)

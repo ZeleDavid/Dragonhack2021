@@ -7,8 +7,8 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.annotation.Nullable
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -18,17 +18,15 @@ import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import si.dragonhack.petpal.R
-import si.dragonhack.petpal.data.models.Fact
 import si.dragonhack.petpal.data.models.Pet
 import si.dragonhack.petpal.data.models.PetStateWeightHeight
 import si.dragonhack.petpal.data.viewmodel.HomeViewModel
 import si.dragonhack.petpal.data.viewmodel.YourPetViewmodel
 import si.dragonhack.petpal.ui.activity.AddPetActivity
 import si.dragonhack.petpal.ui.adapter.CircularPagerIndicatorDecoration
-import si.dragonhack.petpal.ui.adapter.OnItemChangedListener
 import si.dragonhack.petpal.ui.adapter.YourPetDataAdapter
 import si.dragonhack.petpal.ui.adapter.YourPetDataViewHolder
-import si.dragonhack.petpal.util.PetStateCalculator
+
 
 class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPetDataViewHolder> {
 
@@ -68,6 +66,7 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
             val intent = Intent(this.context, AddPetActivity::class.java)
             startActivity(intent)
         }
+
 
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
@@ -23,6 +24,7 @@ import java.lang.reflect.Type
 
 class AddPetActivity : AppCompatActivity() {
     private var sex: String = "Female"
+    private var image: Uri = Uri.EMPTY
     private lateinit var sharedPreferences: SharedPreferences
 
     private lateinit var editor: SharedPreferences.Editor
@@ -54,7 +56,7 @@ class AddPetActivity : AppCompatActivity() {
                 if (result.resultCode == Activity.RESULT_OK) {
                     val result: Intent = result.data!!
                     Picasso.get().load(result.data).into(imageView2)
-
+                    image = result.data!!
                     val queue = Volley.newRequestQueue(this)
                     val tda = TheDogApi(queue)
                     if(result.data != null)
