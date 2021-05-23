@@ -31,6 +31,8 @@ class YourPetDataViewHolder(val view: View): RecyclerView.ViewHolder(view){
         view.pet_breed.text = pet.breed
         if(pet.sex == "Female"){
             view.pet_sex_icon.setImageResource(R.drawable.ic_female)
+            view.pet_sex_icon.layoutParams.height = 70
+            view.pet_sex_icon.layoutParams.width = 70
         }
     }
 }

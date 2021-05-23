@@ -18,6 +18,7 @@ import com.yarolegovich.discretescrollview.transform.Pivot
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import si.dragonhack.petpal.R
+import si.dragonhack.petpal.data.models.Fact
 import si.dragonhack.petpal.data.models.Pet
 import si.dragonhack.petpal.data.models.PetStateWeightHeight
 import si.dragonhack.petpal.data.viewmodel.HomeViewModel
@@ -62,12 +63,14 @@ class HomeFragment : Fragment(), DiscreteScrollView.OnItemChangedListener<YourPe
         yourPetViewModel.getComparison().observe(viewLifecycleOwner, Observer {
             updateComparison(it)
         })
+
         add_pet_button.setOnClickListener {
             val intent = Intent(this.context, AddPetActivity::class.java)
             startActivity(intent)
         }
 
     }
+
     private fun updateComparison(comparison: PetStateWeightHeight){
         Log.i("comp", comparison.weight.difference.toString())
         if(comparison.weight.isAverage){

@@ -16,6 +16,8 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import si.dragonhack.petpal.api.DogFactApi
+import si.dragonhack.petpal.data.models.Fact
 import si.dragonhack.petpal.data.models.PetStateWeightHeight
 import si.dragonhack.petpal.data.models.TDA_dog_info
 import si.dragonhack.petpal.util.PetStateCalculator
@@ -26,10 +28,28 @@ class YourPetViewmodel(application: Application): AndroidViewModel(application) 
     private lateinit var selectedPetComparison: MutableLiveData<PetStateWeightHeight>
     private lateinit var selectedBreedData: MutableLiveData<TDA_dog_info>
     private lateinit var yourPets: MutableLiveData<List<Pet>>
+    private lateinit var dogFacts: MutableLiveData<List<Fact>>
+
     private var dogApi = TheDogApi(Volley.newRequestQueue(application.applicationContext))
+    private var dogFactApi = DogFactApi(Volley.newRequestQueue(application.applicationContext))
+
     private val sharedPreferences: SharedPreferences =
         application.getSharedPreferences("pets", Context.MODE_PRIVATE)
     private val editor = sharedPreferences.edit()
+
+    fun getDogFacts(): MutableLiveData<List<Fact>>{
+        if(!::dogFacts.isInitialized){
+            loadDogFacts()
+        }
+        return dogFacts
+    }
+    fun loadDogFacts(){
+        dogFacts = MutableLiveData<List<Fact>>()
+        dogFactApi.handle_getFacts(::setDogFacts)
+    }
+    fun setDogFacts(facts: List<Fact>){
+        dogFacts.value = facts
+    }
 
     fun getYourPets(): MutableLiveData<List<Pet>> {
         if(!::yourPets.isInitialized){
