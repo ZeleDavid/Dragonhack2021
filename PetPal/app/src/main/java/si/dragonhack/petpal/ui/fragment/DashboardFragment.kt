@@ -34,11 +34,6 @@ class DashboardFragment : Fragment() {
             textView.text = it
         })
 
-        //TODO TDA calls example
-        queue = Volley.newRequestQueue(this.context)
-        val tda = TheDogApi(queue)
-        tda.handle_selected_breed("beagle")
-        tda.handle_allBreeds()
 
         return root
     }

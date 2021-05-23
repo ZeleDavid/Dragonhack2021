@@ -32,6 +32,7 @@
             android:id="@+id/your_pets_list"
             android:layout_width="0dp"
             android:layout_height="600px"
+            android:elevation="0px"
             app:dsv_orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,21 +42,26 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
             android:divider="@drawable/divider"
             android:orientation="vertical"
+            android:showDividers="middle|beginning|end|none"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -102,7 +108,7 @@
                     app:layout_constraintTop_toTopOf="@+id/pet_weight" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/weight_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
@@ -112,15 +118,15 @@
                     app:layout_constraintEnd_toStartOf="@+id/weight_difference_number" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/kg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="kg"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintBottom_toBottomOf="@+id/weight_desc"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView4" />
+                    app:layout_constraintTop_toTopOf="@+id/weight_desc" />
 
                 <TextView
                     android:id="@+id/weight_difference_number"
@@ -130,9 +136,9 @@
                     android:text="1.4"
                     android:textColor="#1C1C1C"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
-                    app:layout_constraintEnd_toStartOf="@+id/textView5"
-                    app:layout_constraintTop_toTopOf="@+id/textView4" />
+                    app:layout_constraintBottom_toBottomOf="@+id/weight_desc"
+                    app:layout_constraintEnd_toStartOf="@+id/kg"
+                    app:layout_constraintTop_toTopOf="@+id/weight_desc" />
 
                 <TextView
                     android:id="@+id/weight_difference_text"
@@ -180,7 +186,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text="kg"
+                    android:text="cm"
                     android:textColor="#151414"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/pet_height"
@@ -188,7 +194,7 @@
                     app:layout_constraintTop_toTopOf="@+id/pet_height" />
 
                 <TextView
-                    android:id="@+id/textView41"
+                    android:id="@+id/height_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
@@ -198,15 +204,15 @@
                     app:layout_constraintEnd_toStartOf="@+id/height_difference_number" />
 
                 <TextView
-                    android:id="@+id/textView51"
+                    android:id="@+id/cm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="cm"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView41"
+                    app:layout_constraintBottom_toBottomOf="@+id/height_desc"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView41" />
+                    app:layout_constraintTop_toTopOf="@+id/height_desc" />
 
                 <TextView
                     android:id="@+id/height_difference_number"
@@ -216,9 +222,9 @@
                     android:text="1.4"
                     android:textColor="#1C1C1C"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView41"
-                    app:layout_constraintEnd_toStartOf="@+id/textView51"
-                    app:layout_constraintTop_toTopOf="@+id/textView41" />
+                    app:layout_constraintBottom_toBottomOf="@+id/height_desc"
+                    app:layout_constraintEnd_toStartOf="@+id/cm"
+                    app:layout_constraintTop_toTopOf="@+id/height_desc" />
 
                 <TextView
                     android:id="@+id/height_difference_text"
@@ -235,6 +241,30 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipsPrograms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipSpacing="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:singleSelection="false">
+
+        </com.google.android.material.chip.ChipGroup>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
