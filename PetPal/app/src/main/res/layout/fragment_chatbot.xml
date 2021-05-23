@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="#E4E4E4"
         android:orientation="horizontal">
 
         <EditText
@@ -22,10 +23,8 @@
             android:layout_margin="10dp"
             android:layout_weight=".5"
             android:background="@drawable/round_button"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@android:color/white"
             android:hint="Type a message..."
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
             android:padding="10dp"
             android:singleLine="true" />
 
@@ -36,7 +35,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/round_button"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="#26A69A"
             android:text="Send"
             android:textColor="@android:color/white" />
 
