@@ -12,7 +12,7 @@ class YourPetDataAdapter(list: List<Pet>): RecyclerView.Adapter<YourPetDataViewH
     val petsList = list
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YourPetDataViewHolder {
-        val layoutInflater = LayoutInflater.from(parent?.context)
+        val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.your_pet_list_item, parent, false)
         return YourPetDataViewHolder(cellForRow)
     }
@@ -29,6 +29,7 @@ class YourPetDataViewHolder(val view: View): RecyclerView.ViewHolder(view){
     fun bind(pet: Pet){
         view.pet_name.text = pet.name
         view.pet_breed.text = pet.breed
+
         if(pet.sex == "Female"){
             view.pet_sex_icon.setImageResource(R.drawable.ic_female)
             view.pet_sex_icon.layoutParams.height = 70

@@ -7,4 +7,6 @@ object Constants {
 
     const val OPEN_GOOGLE = "Opening Google..."
     const val OPEN_SEARCH = "Searching..."
+
+    const val DATA_LOCATION = "cached_data_pets3.json"
 }

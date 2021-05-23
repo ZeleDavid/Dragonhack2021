@@ -1,9 +1,7 @@
 package si.dragonhack.petpal.ui.fragment
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
-import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

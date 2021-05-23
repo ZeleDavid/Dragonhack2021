@@ -25,7 +25,7 @@ class PetStateCalculator {
             var averageHeights = average.split(" - ")
             if(height > averageHeights[1].toDouble()){
                 val difference = height - averageHeights[1].toDouble()
-                return PetStateComparison(difference, "Taller>", false)
+                return PetStateComparison(difference, "Taller", false)
             }
             else if(height < averageHeights[0].toDouble()){
                 val difference = averageHeights[1].toDouble() - height
