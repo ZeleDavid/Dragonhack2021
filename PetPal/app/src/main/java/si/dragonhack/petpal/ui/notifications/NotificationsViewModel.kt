@@ -23,6 +23,22 @@ class NotificationsViewModel(application: Application) : AndroidViewModel(applic
     private lateinit var reminders: MutableLiveData<List<Reminder>>
     val text: LiveData<String> = _text
 
+
+    fun addReminder(reminder: Reminder){
+        var arrayItems = mutableListOf<Reminder>()
+        val serializedObject = sharedPreferences.getString("reminders", null);
+        if (serializedObject != null) {
+            val gson = Gson()
+            val type: Type =
+                object : TypeToken<List<Pet?>?>() {}.type
+            arrayItems = gson.fromJson<Any>(serializedObject, type) as MutableList<Reminder>
+        }
+        arrayItems.add(reminder)
+        editor.putString("reminders", Gson().toJson(arrayItems)).commit()
+        reminders = MutableLiveData()
+        reminders.value = arrayItems
+    }
+
     fun getReminders(): MutableLiveData<List<Reminder>>{
         if(!::reminders.isInitialized){
             loadReminders()
@@ -31,6 +47,14 @@ class NotificationsViewModel(application: Application) : AndroidViewModel(applic
     }
 
     private fun loadReminders() {
-
+        val reminders = MutableLiveData<List<Reminder>>()
+        val serializedObject = sharedPreferences.getString("reminders", null);
+        if (serializedObject != null) {
+            val gson = Gson()
+            val type: Type =
+                object : TypeToken<List<Reminder?>?>() {}.type
+            reminders.value = gson.fromJson<Any>(serializedObject, type) as MutableList<Reminder>
+        }
+        this.reminders = reminders
     }
 }

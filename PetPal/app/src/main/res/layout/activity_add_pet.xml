@@ -81,7 +81,7 @@
             android:gravity="center_vertical"
             android:hint="Age"
             android:paddingEnd="24px"
-            app:suffixText="kg">
+            app:suffixText="years">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pet_age_add"
@@ -105,14 +105,14 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Female" />
+                android:text="F" />
 
             <Button
                 android:id="@+id/male_button"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Male" />
+                android:text="M" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
     </LinearLayout>
